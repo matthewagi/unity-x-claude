@@ -4,7 +4,7 @@
   "displayName": "Claude Unity MCP",
   "description": "MCP server giving Claude complete control over Unity Editor — scene, components, assets, scripts, settings, build, and more.",
   "unity": "2021.3",
-  "documentationUrl": "https://github.com/matthewagi/unity-mcp",
+  "documentationUrl": "https://github.com/matthewagi/unity-x-claude",
   "keywords": [
     "mcp",
     "claude",

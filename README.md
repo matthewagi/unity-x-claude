@@ -3,10 +3,11 @@
   <img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License"/>
   <img src="https://img.shields.io/badge/MCP-Compatible-blue" alt="MCP Compatible"/>
   <img src="https://img.shields.io/badge/Tools-20-orange" alt="20 Tools"/>
+  <img src="https://img.shields.io/badge/C%23_Lines-5.7k-blueviolet" alt="5.7k Lines of C#"/>
   <img src="https://img.shields.io/badge/CPU_When_Idle-0%25-brightgreen" alt="0% CPU When Idle"/>
 </p>
 
-# Claude Unity MCP
+# Unity x Claude
 
 > **Give Claude full control of the Unity Editor.** 20 tools for scripts, scenes, components, assets, settings, and builds — all through the Model Context Protocol.
 
@@ -95,7 +96,26 @@ If your client supports Streamable HTTP transport:
 
 ### 4. Restart your MCP client
 
-Restart Claude Desktop or your MCP client. It connects to Unity's MCP server automatically. You're ready to go.
+Restart Claude Desktop or your MCP client. It connects to Unity's MCP server automatically.
+
+### 5. Verify the connection
+
+In Claude, ask it to do something in Unity — e.g. "What's in my scene?" or "Create a cube". If Claude can read your scene hierarchy, you're connected. If it says "Cannot connect", check that Unity is open and the MCP status window shows "Running".
+
+> **Important:** The `mcp-bridge.mjs` path in your config must point to the currently open Unity project. If you switch projects, update the path and restart Claude Desktop.
+
+---
+
+## Documentation
+
+This repo includes two detailed guides for getting the most out of the MCP tools:
+
+| Guide | What it covers |
+|-------|---------------|
+| **[SKILL.md](SKILL.md)** | Tool quick reference, common workflows (creating characters, setting up scenes, bulk material edits, debugging), property path reference for all common components, settings categories, depth strategy |
+| **[WORKFLOW.md](WORKFLOW.md)** | Full setup walkthrough, architecture deep-dive, known gotchas (primitive creation workaround), runtime data during Play mode, testing pipeline with screenshots, domain reload lifecycle, `execute_csharp` notes, SerializedProperty paths |
+
+**If you're using this as a Claude skill**, copy `SKILL.md` into your Claude skills folder so Claude always has the tool reference available.
 
 ---
 
@@ -278,9 +298,21 @@ Open **Window > Claude MCP** in Unity to monitor and control the server:
 
 ---
 
+## Using as a Claude Skill
+
+For the best experience, copy `SKILL.md` into your Claude skills directory so Claude always has the full tool reference, property paths, and workflow patterns loaded. This means Claude will know exactly how to use every tool without you having to explain anything.
+
+```
+~/.claude/skills/unity-mcp/SKILL.md
+```
+
+The `WORKFLOW.md` covers advanced topics like runtime data inspection, screenshot-based testing, domain reload handling, and known gotchas with workarounds.
+
+---
+
 ## Contributing
 
-Pull requests welcome. If you add a new tool, follow the existing pattern in `Editor/Tools/` — each tool is a static method with a `[Tool]`-style registration in `MCPServer.cs`.
+Pull requests welcome. If you add a new tool, follow the existing pattern in `Editor/Tools/` — each tool is a static method with a `[Tool]`-style registration in `MCPServer.cs`. Update `SKILL.md` with the new tool's usage patterns and `WORKFLOW.md` if there are any gotchas.
 
 ---
 
